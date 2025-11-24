@@ -19,7 +19,7 @@
     <div class="row"></div>
   </div>
   <dialog>
-    <form action="http://httpbin.org" method="post">
+    <form action="/random" method="post">
       <div class="top">
         <h1>Add your book</h1>
         <button id="close" autofocus>close</button>
@@ -44,24 +44,24 @@
         </fieldset>
         <p>
           <label for="title">Title *:</label>
-          <input type="text" id="title" name="title" required />
+          <input type="text" id="title" name="book_title" required />
         </p>
         <p>
           <label for="author">Author *:</label>
-          <input type="text" id="author" name="author" required />
+          <input type="text" id="author" name="book_author" required />
         </p>
         <p>
           <label for="pages">Pages *:</label>
-          <input type="number" id="pages" name="pages" required />
+          <input type="number" id="pages" name="book_pages" required />
         </p>
       </section>
       <section>
         <p>
-          <button type="submit">Add your book</button>
+          <button type="submit" id="add">Add your book</button>
         </p>
       </section>
     </form>
   </dialog>
-  <button id="add">Add Book</button>
+  <button id="dialog-button">Add Book</button>
 </body>
 </html>

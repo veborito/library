@@ -1,13 +1,13 @@
 const myLibrary = [];
 const rows = document.getElementsByClassName("row");
 const dialog = document.querySelector("dialog");
-const addBookButton = document.getElementById("add");
+const dialogButton = document.getElementById("dialog-button");
 const closeButton = document.getElementById("close");
-const form = new FormData(document.querySelector("form"));
+const form = document.querySelector("form");
 
-addBookButton.addEventListener("click", () => dialog.showModal())
+dialogButton.addEventListener("click", () => dialog.showModal())
 closeButton.addEventListener("click", () => dialog.close())
-
+form.addEventListener("submit", addBookForm)
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -19,6 +19,20 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+
+
+function addBookForm (event) {
+  event.preventDefault(); 
+  const formData = new FormData(event.target)
+  const read = formData.get("read") == "true" ? true : false;
+  addBookToLibrary( formData.get("book_title"),
+                    formData.get("book_author"),
+                    parseInt(formData.get("book_pages")),
+                    read  )
+  displayBooks(myLibrary);
+  dialog.close(); 
+}
+
 
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title,author,pages,read);
@@ -39,6 +53,3 @@ function displayBooks(myLibrary) {
     }
   });
 }
-
-addBookToLibrary("Hello", "Verdecia", 123, false);
-displayBooks(myLibrary);
