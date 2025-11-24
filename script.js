@@ -18,18 +18,28 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks(myLibrary) {
-  console.log(myLibrary)
-  myLibrary.forEach(book => {
+  // myLibrary.forEach(book => {
+  //   const bookElement = document.createElement("div");
+  //   bookElement.className = "book";
+  //   bookElement.textContent = `${book.title} ${book.author}`;
+  //   for (let row of rows) {
+  //     if (row.clientWidth > row.scrollWidth) {
+  //       row.appendChild(bookElement);
+  //       break;
+  //     }
+  //   }
+  // });
+  for (let i = 0; i < 6; i++) {
     const bookElement = document.createElement("div");
     bookElement.className = "book";
-    bookElement.textContent = `${book.title} ${book.author}`;
     for (let row of rows) {
-      if (row.children.length < 5) {
+      row.style.overflow = "Hidden";
+      if (row.clientWidth >= row.scrollWidth) {
         row.appendChild(bookElement);
         break;
       }
     }
-  });
+  }
 }
 
 addBookToLibrary("Hello", "Verdecia", 123, false);
