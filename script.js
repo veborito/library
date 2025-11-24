@@ -40,6 +40,9 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks(myLibrary) {
+  for (let row of rows) {
+    row.textContent = "";
+  }
   myLibrary.forEach(book => {
     const bookElement = document.createElement("div");
     bookElement.className = "book";
