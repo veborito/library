@@ -42,12 +42,24 @@ h1, h2, h3, h4, h5, h6 {
   width: 80vw;
   margin: 100px 0 0 0;
   border: 10px solid brown;
-  grid-template-columns: repeat(7, 1fr);
-  grid-auto-rows: min-content;
+  grid-auto-columns: auto;
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+  border-bottom: 5px solid brown;
+}
+
+.row:last-child {
+  border: 0;
 }
 
 .book {
   background-color: tomato;
-  height: 6rem;
-  border-bottom: 5px solid brown;
+  width: 4rem;
+  border: 5px solid black;
+  font-size: 0.9rem;
+  text-wrap: pretty;
 }

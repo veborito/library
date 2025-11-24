@@ -1,5 +1,5 @@
 const myLibrary = [];
-const booksContainer = document.getElementById("container");
+const rows = document.getElementsByClassName("row");
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -13,25 +13,24 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
-  myLibrary.push(new Book(title,author,pages,read));
+  let book = new Book(title,author,pages,read);
+  myLibrary.push(book);
 }
 
 function displayBooks(myLibrary) {
-  //booksContainer.style.backgroundColor = "red";
-  // for (let book in myLibrary) {
-  //   const bookElement = document.createElement("book");
-  // }
-  for (let i = 0; i < 40; i++) {
+  console.log(myLibrary)
+  myLibrary.forEach(book => {
     const bookElement = document.createElement("div");
     bookElement.className = "book";
-    booksContainer.appendChild(bookElement);
-  }
+    bookElement.textContent = `${book.title} ${book.author}`;
+    for (let row of rows) {
+      if (row.children.length < 5) {
+        row.appendChild(bookElement);
+        break;
+      }
+    }
+  });
 }
 
 addBookToLibrary("Hello", "Verdecia", 123, false);
-
 displayBooks(myLibrary);
-
-console.log(myLibrary);
-myLibrary.pop();
-console.log(myLibrary);
