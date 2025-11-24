@@ -14,6 +14,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 img, picture, video, canvas, svg {
@@ -36,12 +38,22 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
+::backdrop {
+  background-color: black;
+  opacity: 0.80;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 #container {
   display: grid;
   background-color: aliceblue;
   height: 80vh;
   width: 80vw;
-  margin: 100px 0 0 0;
   border: 10px solid brown;
   grid-auto-columns: auto;
   grid-template-rows: repeat(8, 1fr);
@@ -64,4 +76,29 @@ h1, h2, h3, h4, h5, h6 {
   border: 5px solid black;
   font-size: 0.9rem;
   text-wrap: pretty;
+}
+
+dialog {
+  justify-self: center;
+  align-self: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 40vw;
+  justify-content: space-evenly;
+}
+
+section {
+  flex: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
 }

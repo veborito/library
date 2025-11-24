@@ -1,5 +1,13 @@
 const myLibrary = [];
 const rows = document.getElementsByClassName("row");
+const dialog = document.querySelector("dialog");
+const addBookButton = document.getElementById("add");
+const closeButton = document.getElementById("close");
+const form = new FormData(document.querySelector("form"));
+
+addBookButton.addEventListener("click", () => dialog.showModal())
+closeButton.addEventListener("click", () => dialog.close())
+
 
 function Book(title, author, pages, read) {
   if (!new.target) {
@@ -18,20 +26,10 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks(myLibrary) {
-  // myLibrary.forEach(book => {
-  //   const bookElement = document.createElement("div");
-  //   bookElement.className = "book";
-  //   bookElement.textContent = `${book.title} ${book.author}`;
-  //   for (let row of rows) {
-  //     if (row.clientWidth > row.scrollWidth) {
-  //       row.appendChild(bookElement);
-  //       break;
-  //     }
-  //   }
-  // });
-  for (let i = 0; i < 6; i++) {
+  myLibrary.forEach(book => {
     const bookElement = document.createElement("div");
     bookElement.className = "book";
+    bookElement.textContent = `${book.title} ${book.author}`;
     for (let row of rows) {
       row.style.overflow = "Hidden";
       if (row.clientWidth >= row.scrollWidth) {
@@ -39,7 +37,7 @@ function displayBooks(myLibrary) {
         break;
       }
     }
-  }
+  });
 }
 
 addBookToLibrary("Hello", "Verdecia", 123, false);
