@@ -39,6 +39,30 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(book);
 }
 
+function addBookAttributes(bookObj, book) {
+  bookObj.bookElement.className = "book";
+  bookObj.bookElement.id = book.id;
+  
+  bookObj.bookButtons.className = "book-buttons";
+  bookObj.deleteButton.className = "delete";
+  bookObj.deleteButton.dataset.bookId = book.id;
+  bookObj.deleteButton.backgroundImage = "./icons/trash-2.svg";
+  
+  bookObj.readButton.className = "has-read";
+  bookObj.readButton.dataset.bookId = book.id;
+  bookObj.readButton.textContent = "read";
+  
+  bookObj.title.textContent = `Title : ${book.title}`;
+  bookObj.author.textContent = `Author : ${book.author}`;
+  
+  let status = book.read ?  "Already read" : "Not read yet";
+  let colorStatus = book.read ? "green" : "red"; 
+  bookObj.status.textContent = `Status : ${status}`;
+  bookObj.status.style.backgroundColor = colorStatus;
+  bookObj.status.dataset.bookId = book.id;
+  bookObj.status.className = "status";
+}
+
 function createBookStructure(bookObj, book) {
   const trashIcon = document.createElement("img");
   trashIcon.src = "./icons/trash-2.svg";
@@ -46,18 +70,12 @@ function createBookStructure(bookObj, book) {
   bookObj.deleteButton.appendChild(trashIcon)
   bookObj.bookButtons.appendChild(bookObj.deleteButton);
   bookObj.bookButtons.appendChild(bookObj.readButton);
-  bookObj.bookElement.appendChild(bookObj.text);
+  bookObj.bookElement.appendChild(bookObj.title);
+  bookObj.bookElement.appendChild(bookObj.author);
+  bookObj.bookElement.appendChild(bookObj.status);
   bookObj.bookElement.appendChild(bookObj.bookButtons);
 
-  bookObj.bookElement.className = "book";
-  bookObj.bookButtons.className = "book-buttons";
-  bookObj.deleteButton.className = "delete";
-  bookObj.deleteButton.dataset.bookId = book.id;
-  bookObj.deleteButton.backgroundImage = "./icons/trash-2.svg";
-  bookObj.readButton.className = "has-read";
-  bookObj.readButton.dataset.bookId = book.id;
-  bookObj.readButton.textContent = "read";
-  bookObj.text.textContent = `Title: ${book.title} Author: ${book.author}`;
+  addBookAttributes(bookObj, book);
 }
 
 function addEventTobuttons (bookObj, book) {
@@ -66,7 +84,24 @@ function addEventTobuttons (bookObj, book) {
     displayBooks(myLibrary);
   });
 
-
+  bookObj.readButton.addEventListener("click", (event) => {
+    for (let book of myLibrary) {
+      if (book.id == event.target.dataset.bookId) {
+        const bookStatus = document.querySelector(`.status[data-book-id="${book.id}"]`);
+        if (book.read) {
+          book.read = false;
+          bookStatus.textContent = "Not read yet";
+          bookStatus.style.backgroundColor = "red";
+        } else {
+          book.read = true;
+          bookStatus.textContent = "Alredy read";
+          bookStatus.style.backgroundColor = "green";
+        }
+        break;
+      }
+    }
+    bookElement.childNode()
+  });
 }
 
 function displayBooks(myLibrary) {
@@ -77,7 +112,9 @@ function displayBooks(myLibrary) {
       bookButtons: document.createElement("div"),
       deleteButton: document.createElement("button"),
       readButton: document.createElement("button"),
-      text: document.createElement("p"),
+      title: document.createElement("p"),
+      author: document.createElement("p"),
+      status: document.createElement("p"),
     }
 
     createBookStructure(bookObj, book);
