@@ -56,7 +56,8 @@ function addBookAttributes(bookObj, book) {
   bookObj.author.textContent = `Author : ${book.author}`;
   
   let status = book.read ?  "Already read" : "Not read yet";
-  let colorStatus = book.read ? "green" : "red"; 
+  let colorStatus = book.read ? "green" : "red";
+  
   bookObj.status.textContent = `Status : ${status}`;
   bookObj.status.style.backgroundColor = colorStatus;
   bookObj.status.dataset.bookId = book.id;
