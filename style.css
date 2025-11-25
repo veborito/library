@@ -76,11 +76,16 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .book {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   flex: 0 0 auto;
   background-color: rgb(146, 75, 63);
   color: white;
   padding: 5px;
   border: 0;
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.275);
   width: 15rem;
   height: 10rem;
   border-radius: 15px;
@@ -90,6 +95,36 @@ h1, h2, h3, h4, h5, h6 {
   overflow: scroll;
   scrollbar-width: none;
   text-align: center;
+}
+
+.book > p {
+  width: 10rem;
+  background-color: blanchedalmond;
+  color: black;
+  border-radius: 15px;
+}
+
+.book > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.book > div > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 0;
+  height: 22px;
+  width: 52px;
+  border-radius: 15px;
+}
+
+img {
+  height: 1rem;
+  width: auto;
 }
 
 dialog {
