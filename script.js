@@ -1,5 +1,5 @@
 let myLibrary = [];
-const rows = document.getElementsByClassName("row");
+const container = document.getElementById("container");
 const dialog = document.querySelector("dialog");
 const dialogButton = document.getElementById("dialog-button");
 const closeButton = document.getElementById("close");
@@ -66,13 +66,11 @@ function addEventTobuttons (bookObj, book) {
     displayBooks(myLibrary);
   });
 
-  
+
 }
 
 function displayBooks(myLibrary) {
-  for (let row of rows) {
-    row.textContent = "";
-  }
+  container.textContent = "";
   myLibrary.forEach(book => {
     const bookObj = {
       bookElement: document.createElement("div"),
@@ -85,12 +83,6 @@ function displayBooks(myLibrary) {
     createBookStructure(bookObj, book);
     addEventTobuttons(bookObj, book);
 
-    for (let row of rows) {
-      row.style.overflow = "Hidden";
-      if (row.clientWidth >= row.scrollWidth) {
-        row.appendChild(bookObj.bookElement);
-        break;
-      }
-    }
+    container.appendChild(bookObj.bookElement);
   });
 }

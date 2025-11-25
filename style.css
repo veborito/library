@@ -3,7 +3,8 @@
 }
 
 :root {
-  font-family: Roboto, system-ui, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Roboto, system-ui, Cantarell, 'Open Sans', sans-serif;
+  --custom-beige: rgba(148, 79, 5, 0.759);
 }
 
 * {
@@ -45,10 +46,6 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-img {
-  pa
-}
-
 ::backdrop {
   background-color: black;
   opacity: 0.80;
@@ -60,35 +57,32 @@ img {
 
 }
 
+
 #container {
-  display: grid;
-  background-color: rgba(148, 79, 5, 0.759);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 15px;
+  background-color: var(--custom-beige);
   box-shadow: 10px 0px 15px gray;
   height: 80vh;
   width: 60vw;
+  padding: 10px;
   border: 10px solid brown;
-  grid-auto-columns: auto;
-  grid-template-rows: repeat(6, 1fr);
+  overflow: scroll;
+  scrollbar-width: none;
 }
 
-.row {
-  display: flex;
-  gap: 5px;
-  border-bottom: 5px solid brown;
-  padding: 5px;
-}
-
-.row:last-child {
-  border: 0;
-}
 
 .book {
   flex: 0 0 auto;
   background-color: rgb(146, 75, 63);
   color: white;
   padding: 5px;
-  width: 10rem;
   border: 0;
+  width: 15rem;
+  height: 10rem;
   border-radius: 15px;
   font-size: 0.9rem;
   text-wrap: pretty;
